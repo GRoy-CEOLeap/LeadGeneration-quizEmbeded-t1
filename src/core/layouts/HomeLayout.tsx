@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Check, ChevronDown, ArrowLeft, Loader2, CheckCircle, XCircle, Car, Truck, Bike, HelpCircle } from 'lucide-react';
 import { piQuizConfig, QuizQuestion } from '../../config/pi/quiz.config';
 import { piContent } from '../../config/pi/content.config';
@@ -17,6 +18,7 @@ interface QuizState {
 }
 
 export const HomeLayout: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedState, setSelectedState] = useState<string>('');
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [showHero, setShowHero] = useState(true);
@@ -49,7 +51,21 @@ export const HomeLayout: React.FC = () => {
   const questions = piQuizConfig.questions;
   const currentQuestion = questions[currentStep - 1];
 
+  const getOutcomePath = (isQualified: boolean): string => {
+    const funnel = sessionStorage.getItem('quiz_entry_funnel') || 'flow_a';
+
+    console.log(`[Routing] Funnel: ${funnel}, Qualified: ${isQualified}`);
+
+    if (isQualified) {
+      return funnel === 'flow_b' ? '/startquiz/01/outcome' : '/outcome';
+    } else {
+      return funnel === 'flow_b' ? '/startquiz/01/thank-you' : '/thank-you';
+    }
+  };
+
   useEffect(() => {
+    sessionStorage.setItem('quiz_entry_funnel', 'flow_a');
+
     const favicon = document.querySelector('link[rel="icon"]') as HTMLLinkElement;
     const appleTouchIcon = document.querySelector('link[rel="apple-touch-icon"]') as HTMLLinkElement;
 
@@ -603,7 +619,9 @@ export const HomeLayout: React.FC = () => {
           }
         });
 
-        window.location.href = `/outcome?${queryString}`;
+        const isQualified = sessionData.qualification_status !== 'disqualified';
+        const outcomePath = getOutcomePath(isQualified);
+        window.location.href = `${outcomePath}?${queryString}`;
 
       } catch (error) {
         console.error('Submission error:', error);

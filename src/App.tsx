@@ -13,6 +13,7 @@ import PILandingPage from './pages/startquiz/v01/LandingPage';
 import PIQuestionsFlow from './pages/startquiz/v01/QuestionsFlow';
 import PIOutcomePage from './pages/startquiz/v01/OutcomePage';
 import PIThankYouDisqualified from './pages/startquiz/v01/ThankYouDisqualified';
+import ThankYou from './pages/ThankYou';
 function App() {
   // Temporary debugging code for environment variables
   console.log('Environment Variables Check:', {
@@ -53,6 +54,7 @@ function App() {
 
             {/* Outcome pages */}
             <Route path="/outcome" element={<PIOutcomePage />} />
+            <Route path="/thank-you" element={<ThankYou />} />
 
             {/* Personal Injury Funnel */}
             <Route path="/startquiz/01" element={<PILandingPage />} />
