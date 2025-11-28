@@ -1,0 +1,296 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom animations */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 120s linear infinite;
+}
+
+/* Custom font weights */
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  body {
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom focus styles */
+@layer utilities {
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+}
+
+/* Hero Section Depth Effect */
+.hero-section {
+  position: relative;
+}
+
+/* Add subtle image layer */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -10%;
+  width: 50%;
+  height: 100%;
+  background-image: url('/images/home-outline.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center right;
+  opacity: 0.05; /* Barely visible */
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure content stays on top */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Custom button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl focus-ring;
+  }
+  
+  .btn-secondary {
+    @apply bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 focus-ring;
+  }
+  
+  .btn-tertiary {
+    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-300 focus-ring;
+  }
+}
+
+/* Mobile sticky button spacing */
+@media (max-width: 768px) {
+  .mobile-spacing {
+    padding-bottom: 80px; /* Account for sticky CTA */
+  }
+}
+
+/* Enhanced mobile touch targets */
+@media (max-width: 768px) {
+  button, .btn-primary, .btn-secondary, .btn-tertiary {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Responsive Hero Layout Optimizations */
+
+/* Mobile mockup sizing */
+.mockup-mobile {
+  width: 180px;
+  height: 220px;
+}
+
+/* Tablet mockup sizing */
+@media (min-width: 768px) {
+  .mockup-tablet {
+    width: 220px;
+    height: 260px;
+  }
+}
+
+/* Desktop mockup sizing */
+@media (min-width: 1024px) {
+  .mockup-desktop {
+    width: 280px;
+    height: 340px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+}
+
+/* Brand logos responsive grid */
+.brand-logos-mobile {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .brand-logos-tablet {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .brand-logos-desktop {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Benefit items responsive typography */
+.benefit-item-mobile {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .benefit-item-tablet {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 500;
+  }
+}
+
+@media (min-width: 1024px) {
+  .benefit-item-desktop {
+    font-size: 18px;
+    line-height: 1.6;
+    font-weight: 500;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll {
+    animation-play-state: paused;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .bg-gradient-to-br,
+  .bg-gradient-to-r {
+    background: #1a365d !important;
+  }
+}
+
+/* Fix cursor on radio labels */
+input[type="radio"] {
+  cursor: pointer;
+}
+
+label:has(input[type="radio"]) {
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Prevent text cursor on non-input elements */
+.bg-white.rounded-2xl,
+.bg-white.rounded-2xl * {
+  user-select: none;
+  cursor: default;
+}
+
+/* Re-enable for actual input fields */
+.bg-white.rounded-2xl input[type="text"],
+.bg-white.rounded-2xl input[type="email"],
+.bg-white.rounded-2xl input[type="tel"],
+.bg-white.rounded-2xl input[type="number"],
+.bg-white.rounded-2xl textarea {
+  user-select: text;
+  cursor: text;
+}
+
+/* Clickable elements should have pointer */
+.bg-white.rounded-2xl button,
+.bg-white.rounded-2xl label {
+  cursor: pointer;
+}
+
+/* Remove focus outline on non-interactive elements */
+div:focus {
+  outline: none;
+}
+
+/* Animated border for NextSteps first card */
+.animated-border-wrapper {
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8, #2563eb, #60a5fa, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.animate-gradient-border {
+  background: linear-gradient(45deg, #3b82f6, #1d4ed8, #2563eb, #60a5fa, #3b82f6);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Subtle border pulse for recommended quiz options - PI Brand Colors */
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: #FF7B47;
+    box-shadow: 0 0 0 0 rgba(255, 123, 71, 0.4);
+  }
+  50% {
+    border-color: #DAA520;
+    box-shadow: 0 0 0 4px rgba(218, 165, 32, 0.15);
+  }
+}
+
+.animate-pulse-border {
+  animation: pulse-border 2s ease-in-out infinite;
+}
+
+/* Progress bar shimmer effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Gradient glow for validated fields */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(56, 161, 105, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(56, 161, 105, 0.5);
+  }
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
