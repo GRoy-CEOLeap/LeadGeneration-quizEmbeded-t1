@@ -18,11 +18,6 @@ export interface PhoneValidationState {
   otp_required?: boolean;
 }
 
-export interface QuizOverlayProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 export interface QuizData {
   zip: string;
   home_status: string;

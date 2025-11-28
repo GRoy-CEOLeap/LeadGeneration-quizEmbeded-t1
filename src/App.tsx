@@ -5,17 +5,9 @@ import { ComplianceProvider } from './core/components/ComplianceProvider';
 import { getSessionData } from './core/utils/session';
 import './core/utils/complianceMonitor';
 import { HomeLayout } from './core/layouts/HomeLayout';
-import { HeroLayout } from './core/layouts/HeroLayout';
-import { PIHeroLayout } from './core/layouts/PIHeroLayout';
-import { TOFULayout } from './core/layouts/TOFULayout';
 import { PrivacyPolicy } from './core/pages/PrivacyPolicy';
 import { TermsOfService } from './core/pages/TermsOfService';
-import { TCPADisclaimer } from './core/pages/TCPADisclaimer';
 import { Contact } from './core/pages/Contact';
-import { PartnersPage } from './core/pages/PartnersPage';
-import { QuoteLanding } from './core/pages/QuoteLanding';
-import { QuoteQuiz } from './core/pages/QuoteQuiz';
-import ADTOutcome from './pages/outcome/adt';
 import GenericOutcome from './pages/outcome/GenericOutcome';
 import PILandingPage from './pages/startquiz/v01/LandingPage';
 import PIQuestionsFlow from './pages/startquiz/v01/QuestionsFlow';
@@ -51,28 +43,16 @@ function App() {
           <Routes>
             {/* Layout-based routes */}
             <Route path="/" element={<HomeLayout />} />
-            <Route path="/get-quote" element={<PIHeroLayout />} />
-            <Route path="/quiz" element={<HeroLayout />} />
-            <Route path="/start-quiz" element={<TOFULayout />} />
-
-            {/* Funnel routes */}
-            <Route path="/quote" element={<QuoteLanding />} />
-            <Route path="/quote/quiz" element={<QuoteQuiz />} />
 
             {/* Legal pages */}
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/tcpa-disclaimer" element={<TCPADisclaimer />} />
-
-            {/* Outcome pages */}
-            <Route path="/outcome" element={<PIOutcomePage />} />
-            <Route path="/outcome/adt" element={<ADTOutcome />} />
 
             {/* Contact page */}
             <Route path="/contact" element={<Contact />} />
 
-            {/* Partners page */}
-            <Route path="/partners" element={<PartnersPage />} />
+            {/* Outcome pages */}
+            <Route path="/outcome" element={<PIOutcomePage />} />
 
             {/* Personal Injury Funnel */}
             <Route path="/startquiz/01" element={<PILandingPage />} />

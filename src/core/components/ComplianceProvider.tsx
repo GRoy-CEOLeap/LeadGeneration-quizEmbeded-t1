@@ -10,10 +10,6 @@ interface ComplianceProviderProps {
 
 const ROUTES_WITH_FORMS = [
   '/',
-  '/start-quiz',
-  '/quiz',
-  '/get-quote',
-  '/quote',
   '/contact',
   '/startquiz/01'
 ];

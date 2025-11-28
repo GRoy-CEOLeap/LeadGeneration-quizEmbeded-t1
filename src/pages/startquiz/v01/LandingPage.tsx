@@ -11,14 +11,6 @@ import { validateField, normalizePhoneNumber, validateName } from '../../../core
 import { config } from '../../../config/environment.config';
 import { InlineOTPInput } from '../../../core/components/InlineOTPInput';
 import { MovingBanner } from '../../../core/components/MovingBanner';
-import { QuizOverlay } from '../../../core/components/QuizOverlay';
-import { PainAgitation } from '../../../custom/components/PainAgitation';
-import { ComparisonSection } from '../../../custom/components/ComparisonSection';
-import { SocialProofWall } from '../../../custom/components/SocialProofWall';
-import { TestimonialDisclaimer } from '../../../custom/components/TestimonialDisclaimer';
-import { EducationalValueProps } from '../../../custom/components/EducationalValueProps';
-import { SimpleHowItWorks } from '../../../custom/components/SimpleHowItWorks';
-import { TOFUFinalCTA } from '../../../custom/components/TOFUFinalCTA';
 import { getStepNumber, getStepId } from '../../../core/utils/quizStepMapping';
 import { triggerJornayaHashEvent } from '../../../core/utils/jornayaHashTracking';
 
@@ -28,7 +20,6 @@ interface QuizState {
 
 const LandingPage: React.FC = () => {
   const [selectedState, setSelectedState] = useState<string>('');
-  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [showHero, setShowHero] = useState(true);
   const heroRef = useRef<HTMLElement>(null);
@@ -733,20 +724,6 @@ const LandingPage: React.FC = () => {
 
         <MovingBanner />
 
-        <PainAgitation />
-
-        <ComparisonSection onQuizStart={scrollToHero} />
-
-        <SocialProofWall />
-
-        <TestimonialDisclaimer />
-
-        <EducationalValueProps />
-
-        <SimpleHowItWorks onQuizStart={scrollToHero} />
-
-        <TOFUFinalCTA onQuizStart={scrollToHero} />
-
         <section className="bg-white py-12 sm:py-16 border-t border-gray-200">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold text-navy mb-8 sm:mb-10 text-center">
@@ -773,8 +750,6 @@ const LandingPage: React.FC = () => {
         </section>
 
         <Footer />
-
-        <QuizOverlay isOpen={isQuizOpen} onClose={() => setIsQuizOpen(false)} />
 
         {showStickyBar && (
           <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-navy p-3 shadow-lg">

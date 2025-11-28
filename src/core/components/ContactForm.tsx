@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Clock, MapPin, Phone, Mail, Shield } from 'lucide-react';
-import { QuizOverlay } from '../components/QuizOverlay';
 import { Footer } from '../components/Footer';
 import { JornayaField } from './JornayaField';
 
 export const Contact: React.FC = () => {
-  const [isQuizOpen, setIsQuizOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,14 +12,6 @@ export const Contact: React.FC = () => {
     message: '',
     consent: false
   });
-
-  const handleQuizStart = () => {
-    setIsQuizOpen(true);
-  };
-
-  const handleQuizClose = () => {
-    setIsQuizOpen(false);
-  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -68,12 +58,6 @@ export const Contact: React.FC = () => {
                 <span className="text-xl font-bold text-gray-900">YourHomeSecured</span>
               </div>
             </div>
-            <button
-              onClick={handleQuizStart}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors"
-            >
-              Take Security Quiz
-            </button>
           </div>
         </div>
       </header>
@@ -217,7 +201,6 @@ export const Contact: React.FC = () => {
         </div>
       </section>
 
-      <QuizOverlay isOpen={isQuizOpen} onClose={handleQuizClose} />
       <Footer />
     </div>
   );
